@@ -1,5 +1,10 @@
 import { subscribe } from "diagnostics_channel";
-import { Injectable, CanActivate, ExecutionContext } from "@nestjs/common";
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+} from "@nestjs/common";
 import { Context } from "telegraf";
 import { Observable } from "rxjs";
 import { BotService } from "../bot/bot.service";
@@ -26,26 +31,9 @@ export class SubscriptionGuard implements CanActivate {
     );
 
     if (!isSubscribed) {
-      await ctx.reply(language[user!.lang].subs, {
-        reply_markup: {
-          inline_keyboard: [
-            [
-              {
-                text: language[user!.lang].subscribe,
-                url: "https://t.me/+Bl0EdInqgIAxY2Yy",
-              },
-            ],
-            [
-              {
-                text: language[user!.lang].subscribed,
-                callback_data: "check_subscription",
-              },
-            ],
-          ],
-        },
-      });
-
-      return false;
+      throw new ForbiddenException(
+        `${language[user!.lang].subs}_${language[user!.lang].subscribe}_${language[user!.lang].subscribed}`
+      );
     }
 
     return true;

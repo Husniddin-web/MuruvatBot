@@ -5,6 +5,7 @@ import { UseFilters, UseGuards } from "@nestjs/common";
 import { SubscriptionGuard } from "../guards/subscribe.guard";
 import { WorkerBanGuard } from "../guards/ban.guard";
 import { TelegrafExceptionFilter } from "../filters/botfilter";
+import { UserIsActiveGuard } from "../guards/isActive.guard";
 
 @UseFilters(TelegrafExceptionFilter)
 @UseGuards(WorkerBanGuard)
@@ -33,6 +34,7 @@ export class BotUpdate {
   }
 
   @Action(/^contact_admin/)
+  @UseGuards(UserIsActiveGuard)
   @UseGuards(SubscriptionGuard)
   async contactAdmin(@Ctx() ctx: Context) {
     await this.botService.contactAdmin(ctx);
@@ -61,5 +63,10 @@ export class BotUpdate {
   @On("location")
   async onLocation(@Ctx() ctx: Context) {
     await this.botService.onLocation(ctx);
+  }
+
+  @Action(/^confirm_user_/)
+  async confirmUser(@Ctx() ctx: Context) {
+    await this.botService.confirmUser(ctx);
   }
 }

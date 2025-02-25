@@ -20,7 +20,12 @@ export const language = {
     subscribe: "✅ Obuna bo'lish",
     subscribed: "✅ Obuna bo'ldim",
     ban: "🚫 Siz bloklangansiz. Kirish taqiqlangan.",
+    admin_respone: "Iltimos Admin tasdiqlashni kuting !",
+    confirm:
+      "✅ Sizning profilingiz tasdiqlandi! Endi siz botdan to‘liq foydalanishingiz mumkin.",
+    save: "Saqlandi ",
   },
+
   ru: {
     welcome: "Добро утро", // "Good morning"
     ask_name: "Как вас зовут?", // "What is your name?"
@@ -42,6 +47,9 @@ export const language = {
     subscribe: "✅ Подписаться",
     subscribed: "✅ Я подписался",
     ban: "🚫 Вы заблокированы. Доступ запрещен.",
-    
+    admin_respone: "Пожалуйста, Админ, ожидайте подтверждения!",
+    confirm:
+      "✅ Ваш профиль подтвержден! Теперь вы можете полностью использовать бота.",
+    save: "Saqlandi ",
   },
 };
